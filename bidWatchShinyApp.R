@@ -1,5 +1,6 @@
 library(shiny)
 source('first_plot.R')
+source('plot_2.R')
 
 ui <- fluidPage(
   theme = "styles.css",
@@ -8,9 +9,11 @@ ui <- fluidPage(
   tags$div(id = "divBanner",
     tags$img(src="banner.png", width = 1440, id = "imgBanner")),
   
+  
   #main window
   tags$div(id = "divMain",
   h1("Why watch bids?"),
+    #tags$img(src="linebreak", height = 10, id = "imgLine"),
   tags$div(id = "divMotivation",
   p("Public procurement is one of the government activity most vulnerable to corruption. In addition to the volume of transactions and the financial interests at stake, corruption risks are exacerbated by the complexity of the process, the close interaction between public officials and businesses, and the multitude of stakeholders. (OCED, 2016)"),
   p("This results in exaggerated costs and a decrease in quality. A study by the OECD and the World Bank shows that corruption in the infrastructure and extractives sectors lead to misallocation of public funds and substandard and insufficient services…  it has been estimated that between 10-30% of the investment in publicly funded construction projects may be lost through mismanagement and corruption (OECD, 2015a)."),
@@ -21,28 +24,27 @@ ui <- fluidPage(
   ),
   
   fluidRow(
-    column(3,
-           plotOutput("plot1"))
-  ),
+    column(3, plotOutput("plot1")),
+    column(5, plotOutput("plot2"))
+  )#,
   
   
-  sliderInput(inputId = "num", label = "Choose a number", value = 25, min = 1, max = 100 ), 
-  textInput(inputId="title", label = "Write a title", value = "Histogram of Random Normal Values"),
-  plotOutput("hist")
+  #sliderInput(inputId = "num", label = "Choose a number", value = 25, min = 1, max = 100 ), 
+  #textInput(inputId="title", label = "Write a title", value = "Histogram of Random Normal Values"),
+  #plotOutput("hist")
   
   )
 
 server <- function(input, output){
   
-  output$hist <- renderPlot({
-    title <- "100 random normal values"
-    hist(rnorm(input$num), main = input$title)
-    })
-  
-  
   output$plot1 <- renderPlot({
     plot1()
-  })
+     })
+  
+  output$plot2 <- renderPlot({
+    plot2()
+    }) 
+ 
   
 }
 

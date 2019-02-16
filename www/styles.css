@@ -45,3 +45,9 @@ h1 {
 p {
 margin: 20px;
 }
+
+#plot1 {
+  font-family: 'Avenir';
+  font-size: 1.6em;
+  color: #666666;
+}
