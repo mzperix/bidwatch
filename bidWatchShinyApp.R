@@ -1,4 +1,5 @@
 library(shiny)
+source('first_plot.R')
 
 ui <- fluidPage(
   theme = "styles.css",
@@ -17,10 +18,12 @@ ui <- fluidPage(
   p("Four biggest corruption categories, as estimated by OECD - Extractive (19% of bribery cases), Construction (15%), Transportation and storage (15%), Information and Communication (10%)"),
   p("Transparency is the #1 called for reform by The 2014 Business and Industry Advisory Committee to the OECD (BIAC) Economic Survey!"),
   p("In order for citizens and civil society organizations to fulfil an oversight role, as so-called watchdog, data availability needs to be paired with timeliness, data quality, processing capacity, effective reporting and whistleblower channels."))
-    
   ),
   
-  
+  fluidRow(
+    column(3,
+           plotOutput("plot1"))
+  ),
   
   
   sliderInput(inputId = "num", label = "Choose a number", value = 25, min = 1, max = 100 ), 
@@ -36,6 +39,10 @@ server <- function(input, output){
     hist(rnorm(input$num), main = input$title)
     })
   
+  
+  output$plot1 <- renderPlot({
+    plot1()
+  })
   
 }
 
