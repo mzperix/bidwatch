@@ -3,8 +3,6 @@ library(dplyr)
 library(magrittr)
 library(readr)
 
-setwd('~/SCIENCE/Sointer/bidwatch')
-
 plot1 <- function()
 {
   data <- read_csv("data/all_contracts_prime_transactions_1.csv")
