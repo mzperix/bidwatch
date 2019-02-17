@@ -8,7 +8,7 @@ get_entity_info <- function(search_term){
     entity<-fromJSON(call)
     
     result <- c("name"=entity$itemListElement[[1]]$result$name,
-                "title"=entity$itemListElement[[1]]$result$description,
-                "description"=entity$itemListElement[[1]]$result$detailedDescription[['articleBody']])
+                "title"=entity$itemListElement[[1]]$result$description)
+    try(result[['description']]<-entity$itemListElement[[1]]$result$detailedDescription[['articleBody']])
     return(result)
 }

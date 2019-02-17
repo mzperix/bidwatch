@@ -3,7 +3,7 @@ library(r2d3)
 source('first_plot.R')
 source('plot_2.R')
 source('info_card.R')
-
+source('get_entity_info.R')
 
 ui <- fluidPage(
   theme = "styles.css",
@@ -70,10 +70,9 @@ server <- function(input, output) {
 
   output$info_card <- renderUI({
     #HTML("WHAT IS THIS")
-    entity <- c("name"="Ryan Zinke",
-                "title"="Former Secretary of Internal D",
-                "description"="Baddy")
-    info_card(entity)
+    hover_search_term<-"whitefish+energy"
+    #hover_search_term<-"ryan+zinke"
+    info_card(get_entity_info(hover_search_term))
   })
 }
 
