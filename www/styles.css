@@ -81,15 +81,17 @@ body {
  	 margin-bottom: 30px;
  	 margin-top: 0;
  	 text-align: center;
- 	 color: rgba(0,84,104,0.4);
+ 	 color: rgba(0,84,104,0.8);
  	 border: rgba(0,84,104,0.4) solid 1px;
 }
 
-btn#btn_Search {
+btn#searchBtn {
      display: block;
      margin-left: auto;
  	 margin-right: auto;
- 	 color: #005468;
+     border: rgba(0,84,104,0.4) solid 1px;
+     background-color: #007690;
+     color: white;
 }
  
 h1 {

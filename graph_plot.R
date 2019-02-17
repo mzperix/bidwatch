@@ -53,6 +53,6 @@ graph_plot <- function(entities, articles){
       })   
   #names <- df %>%
     #geom_text(aes(x=x, y=y-ysize, label=label))
-  return(wat+extra+geom_text(aes(x=x, y=y-ysize/2, label=label)))
+  return(wat+extra+geom_text(aes(x=x, y=y-ysize/2, label=label))+coord_fixed())
 }
 

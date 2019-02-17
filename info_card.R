@@ -3,7 +3,7 @@ library(shiny)
 
 info_card <- function(entity){
   return(
-    HTML(paste(c("<b>",entity[['name']],"</b>",
+    HTML(paste(c("<div class='entityName'>",entity[['name']],"</div>",
                  entity[['title']],
                  entity[['description']]),
                sep="<br/>"))

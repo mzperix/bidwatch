@@ -29,10 +29,10 @@ ui <- fluidPage(
            tags$img(src="linebreak.png", id = "imgLine"),
            
            h1("Do your own search!", id = "h1_Search"),
-           textInput(inputId="mainSearch", label = "", value = "search for a company, a person, an agency, or a city"),
+           #textInput(inputId="mainSearch", label = "", value = "search for a company, a person, an agency, or a city"),
            
-           tags$img(src="network_1.png", height = 500, id = "imgNetwork_1"),
-           tags$div(id = "divImg1", tags$img(src="imgHover1.png", id = "imgHover_1"))#,
+           #tags$img(src="network_1.png", height = 500, id = "imgNetwork_1"),
+           #tags$div(id = "divImg1", tags$img(src="imgHover1.png", id = "imgHover_1"))#,
            #tags$div(id = "divImg2"),
            #tags$div(id = "divImg3"),
            #tags$div(id = "divImg4"),
@@ -44,24 +44,21 @@ ui <- fluidPage(
            #tags$div(id = "divImg10"),
            #tags$div(id = "divImg11")
            
-  ),
+  
   
   fluidRow(
-    column(12, align="center",
-           textInput("searchEntry", "Search corrupt bids", value = "", placeholder = NULL),
-           actionButton("searchBtn", "Search"))
+    column(1, align="center",
+           textInput(inputId="mainSearch", value = "search corrupt bids", label = "", placeholder = NULL),
+           actionButton("searchBtn", "SEARCH"))
     ),
   
-  
-  fluidRow(
-    column(3, plotOutput("plot1")),
-    column(5, plotOutput("plot2")),
-    column(2, htmlOutput("info_card"))
-  ),
-  
-  tags$div(id = "divDetail"
-  )
-)
+  fluidRow(column(5, plotOutput("plot2")), 
+           column(2, align="center", htmlOutput("info_card"))
+
+),
+
+  tags$div(id = "divDetail")
+))
 
 server <- function(input, output) {
   
