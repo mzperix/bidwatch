@@ -4,6 +4,7 @@ library(magrittr)
 library(readr)
 library(stringi)
 
+rating <- function(cName, data){
   
 # data <- read_csv("GitHub/bidwatch/data/all_contracts_test.csv")
 # cName <- "INTERNATIONAL ROAD DYNAMICS INC"
@@ -88,5 +89,6 @@ library(stringi)
     
     locations <- match(c(cName),nameMatrix)
     
+     return(score[locations])
       
  }
