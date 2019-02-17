@@ -6,6 +6,7 @@ get_entity_info <- function(search_term){
     call <- paste("https://kgsearch.googleapis.com/v1/entities:search?query=",search_term,"&key=",api_key,"&limit=1&indent=True",
                  sep="")
     entity<-fromJSON(call)
+    print(entity)
     if (length(entity$itemListElement)>0){
         result <- c("name"=entity$itemListElement[[1]]$result$name,
                     "title"=entity$itemListElement[[1]]$result$description)
@@ -13,7 +14,7 @@ get_entity_info <- function(search_term){
     }
     else{
         result <- c("name"=gsub("+", " ", search_term),
-                    "title"=" ",
+                    "title"="Is this real life?",
                     "description"=" ")
     }
     return(result)

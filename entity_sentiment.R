@@ -65,7 +65,11 @@ score_entities <- function(entities){
               mean_product = mean(score*magnitude),
               wikipedia_url = head(wikipedia_url,1),
               max_saliency = max(salience)) %>%
-    subset(max_saliency > 0.001)
+    ungroup() %>%
+    subset(max_saliency > 0.002) %>%
+    top_n(16, max_saliency) %>%
+    return(.)
+    #
     #nest(-name) %>%
     #mutate(Quantiles = map(data, ~ quantile(.$score)),
     #       Quantiles = map(Quantiles, ~ bind_rows(.) %>% gather()))%>% 
@@ -75,7 +79,8 @@ score_entities <- function(entities){
 
 get_entities <- function(company){
   print(company)
-  company <- paste(gsub(" ","+", company),'scandal',sep='+')
+  #company <- paste(gsub(" ","+", company),'scandal',sep='+')
+  company <- gsub(" ","+", company)
   print(company)
   # Do Google search for company related news
   articles <- search_articles(company)

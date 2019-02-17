@@ -27,8 +27,8 @@ graph_plot <- function(entities, articles){
   #net_matrix[id_central,] <- 1
   #net_matrix[,id_central] <- 1L
   irrelevant_ids <- which(rowSums(net_matrix)==0)
-  net_matrix <- net_matrix[-irrelevant_ids,-irrelevant_ids]
-  scores <- scores[-irrelevant_ids,]
+  #net_matrix <- net_matrix[-irrelevant_ids,-irrelevant_ids]
+  #scores <- scores[-irrelevant_ids,]
   net = network(net_matrix,label = scores$name, directed = FALSE)
   # vertex names
   network.vertex.names(net) = scores$name

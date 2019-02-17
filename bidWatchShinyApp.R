@@ -7,8 +7,12 @@ source('info_card.R')
 source('get_entity_info.R')
 source('graph_plot.R')
 
+
 load('entities.RData')
 load('articles.RData')
+
+search_term <- 'whitefish+energy+holding'
+whitefish_holding <-get_entity_info(search_term)
 
 data_ready <- FALSE
 
@@ -52,7 +56,7 @@ ui <- fluidPage(
   actionButton("searchBtn", "SEARCH"),
   
   fluidRow(column(7, div(style = "height:700px;", plotOutput("plot2", height="600px", width="700px", hover="plot_hover"))), 
-           column(2, align="center", htmlOutput("info_card"))
+           column(2, align="center", div(id='info_card', htmlOutput("info_card")))
 
 ),
 
@@ -72,16 +76,16 @@ tags$div(id = "divDetail",
 )
 
 server <- function(input, output) {
-  
-  result <- NULL
+  plot_is_ready <- FALSE
   observeEvent(input$searchBtn, {
       data_ready <- FALSE
+      plot_is_ready <- TRUE
       withProgress(message = 'Searching for information', value = 0.5, {
-        #search_results <- get_entities(input$mainSearch)
-        #entities <- search_results[['entities']]
-        #articles <- search_results[['articles']]
+        search_results <- get_entities(input$mainSearch)
       })
-      print(articles)
+      entities <- search_results[['entities']]
+      articles <- search_results[['articles']]
+      #print(articles)
       withProgress(message = 'Making plot', value = 1, {
         result <- graph_plot(entities, articles)
       })
@@ -89,47 +93,38 @@ server <- function(input, output) {
       output$plot2 <- renderPlot({
         result[['plot']]
       }) 
-      #print(result[['data']])
-      plot_data <- result[['data']]
-      for (i in 1:length(plot_data$label)){
-        entity_info <- try(get_entity_info(gsub(' ', '+', x['label'])))
-        plot_data[i,'name']<-entity_info['name']
-        plot_data[i,'title']<-entity_info['title']
-        plot_data[i,'description']<-entity_info['description']
-      }
-      data_ready <- TRUE
       
-      output$info_card <- renderUI({
-        hoverId <- 1
-        return(info_card(result[['data']][hoverId,]))
-      })
+      #print(result[['data']])
+      #plot_data <- result[['data']]
+      #for (i in 1:length(plot_data$label)){
+      #  entity_info <- try(get_entity_info(gsub(' ', '+', x['label'])))
+      #  plot_data[i,'name']<-entity_info['name']
+      #  plot_data[i,'title']<-entity_info['title']
+      #  plot_data[i,'description']<-entity_info['description']
+      #}
+      #data_ready <- TRUE
+      plot_is_ready <- TRUE
+      #output$info_card <- renderUI({
+      #  hoverId <- 1
+      #  return(info_card(result[['data']][hoverId,]))
+      #})
       #hover_search_term<-"whitefish+energy"
+      output$info_card <- renderUI({
+        if (plot_is_ready){
+          hover_search_term<-"whitefish+energy"
+          #hover_search_term<-"ryan+zinke"
+          info_card(get_entity_info(hover_search_term))
+        }
+      }) 
   })
   
-  hoverId <- reactive({
-    getSymbols(input$symb, src = "yahoo",
-               from = input$dates[1],
-               to = input$dates[2],
-               auto.assign = FALSE)
-  })
-  
-  observeEvent(input$plot_hover, {
-    hoverId <- 2
-    if (!is.null(result)){
-      print('HOVER')
-      print(result[['data']][hoverId,'name'])
-    }
-  })
-  
-  output$plot1 <- renderPlot({
-    plot1()
-  })
-
   output$info_card <- renderUI({
-    
-    hoverId <- 1
-    return(info_card(result[['data']][hoverId,]))  
-  })
+    if (plot_is_ready){
+      hover_search_term<-"whitefish+energy"
+      #hover_search_term<-"ryan+zinke"
+      info_card(get_entity_info(hover_search_term))
+    }
+  }) 
 }
 
 shinyApp(ui = ui, server = server)
