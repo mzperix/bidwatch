@@ -1,7 +1,9 @@
 library(shiny)
+library(r2d3)
 source('first_plot.R')
 source('plot_2.R')
-
+source('info_card.R')
+source('get_entity_info.R')
 
 ui <- fluidPage(
   theme = "styles.css",
@@ -13,6 +15,7 @@ ui <- fluidPage(
   
   
   #main window
+  
   tags$div(id = "divMain",
            h1("Why watch bids?", id = "h1_Bids"),
            #tags$img(src="linebreak.png", id = "imgLine"),
@@ -38,6 +41,18 @@ ui <- fluidPage(
            
   ),
   
+  fluidRow(
+    column(12, align="center",
+           textInput("searchEntry", "Search corrupt bids", value = "Pittsburgh", placeholder = NULL),
+           actionButton("searchBtn", "Search"))
+    ),
+  
+  
+  fluidRow(
+    column(3, plotOutput("plot1")),
+    column(5, plotOutput("plot2")),
+    column(2, htmlOutput("info_card"))
+  ),
   
   tags$div(id = "divDetail"
   )
@@ -52,8 +67,13 @@ server <- function(input, output) {
   output$plot2 <- renderPlot({
     plot2()
   }) 
-  
-  
+
+  output$info_card <- renderUI({
+    #HTML("WHAT IS THIS")
+    hover_search_term<-"whitefish+energy"
+    #hover_search_term<-"ryan+zinke"
+    info_card(get_entity_info(hover_search_term))
+  })
 }
 
 shinyApp(ui = ui, server = server)
