@@ -39,7 +39,7 @@ read_article <- function(url) {
   
   if (node != ""){
     #print('Passed')
-    try(read_html(url) %>%
+    try(read_html(url, ) %>%
         #return())
         html_nodes(.,node) %>%
         #html_nodes(., ".article-content p") %>%
@@ -65,7 +65,7 @@ score_entities <- function(entities){
               mean_product = mean(score*magnitude),
               wikipedia_url = head(wikipedia_url,1),
               max_saliency = max(salience)) %>%
-    subset(max_saliency > 0.002)
+    subset(max_saliency > 0.001)
     #nest(-name) %>%
     #mutate(Quantiles = map(data, ~ quantile(.$score)),
     #       Quantiles = map(Quantiles, ~ bind_rows(.) %>% gather()))%>% 
@@ -74,7 +74,9 @@ score_entities <- function(entities){
 
 
 get_entities <- function(company){
+  print(company)
   company <- paste(gsub(" ","+", company),'scandal',sep='+')
+  print(company)
   # Do Google search for company related news
   articles <- search_articles(company)
   
@@ -112,8 +114,8 @@ check_connection <- function(name1, name2, text) {
       result <- result + 1
     }
   }
-  l1 <- map(tail(text,length(text)-1), function(x){grepl(tail(strsplit(name1, ' '),1), x)})
-  l2 <- map(head(text,length(text)-1), function(x){grepl(tail(strsplit(name2, ' '),1), x)})
+  l1 <- map(tail(text,length(text)-1), function(x){grepl(tail(unlist(strsplit(name1, ' ')),1), x)})
+  l2 <- map(head(text,length(text)-1), function(x){grepl(tail(unlist(strsplit(name2, ' ')),1), x)})
   for (i in 1:(length(l1)-1)){
     if (l1[[i]] & l2[[i]]){
       result <- result + 1

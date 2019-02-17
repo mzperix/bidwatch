@@ -34,7 +34,9 @@ graph_plot <- function(entities, articles){
   network.vertex.names(net) = scores$name
   
   img <- readPNG("www/imgHover1.png")
-  wat <- ggnet2(net, label=FALSE, edge.size=2) 
+  print(net_matrix)
+  wat <- ggnet2(net, label=FALSE, edge.size=1, 
+                mode = "fruchtermanreingold", layout.par = list(cell.jitter = 0.15))
       
   df <- data.frame(wat$data) %>%
     #mutate(name=label) %>%
@@ -53,6 +55,8 @@ graph_plot <- function(entities, articles){
       })   
   #names <- df %>%
     #geom_text(aes(x=x, y=y-ysize, label=label))
-  return(wat+extra+geom_text(aes(x=x, y=y-ysize/2, label=label))+coord_fixed())
+  return(list("plot"=wat+extra+geom_label(aes(x=x, y=y-ysize/2, label=label),label.size=0)+
+                coord_fixed(),
+              "data"=wat$data))
 }
 
