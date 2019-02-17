@@ -25,7 +25,12 @@ body {
   }
   
  img#imgNetwork_1{
+     display: block;
+ 	margin-left: auto;
+ 	margin-right: auto;
      margin-top: 50px;
+     min-height: 600px;
+      min-width: 500px;
 }
 
  img#imgLine {
@@ -44,6 +49,7 @@ body {
      display: inline;
      z-index: 100;
   }
+    
  /* divs */
  
  div#divBanner {
@@ -83,12 +89,12 @@ body {
   
     div#divData1  {
       top: -300px;
-      left: 480px;
+      left: 460px;
     }
     
     div#divData2 {
       top: -600px;
-      left: 960px;
+      left: 920px;
     }
   
   div#divImg1 {
@@ -109,8 +115,13 @@ body {
       }
       
  div#plot2, div#plot2 img {
-     height: 600px;
-     width: auto;
+     display: block;
+ 	 margin-left: auto;
+ 	 margin-right: auto;
+     margin-top: 50px;
+     min-height: 600px;
+
+
   }
     
  /* inputs */

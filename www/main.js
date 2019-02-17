@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
   $("input#mainSearch").width($(window).width()-50); 
-  $("div#divCoin").width((($(window).width()-150)/3));
-  $("div#divData1").width((($(window).width()-150)/3));
-  $("div#divData2").width((($(window).width()-150)/3));
+  $("div#divCoin").width((($(window).width()-240)/3));
+  $("div#divData1").width((($(window).width()-240)/3));
+  $("div#divData2").width((($(window).width()-240)/3));
 
 
   /*$("img#imgNetwork_1").hide();
