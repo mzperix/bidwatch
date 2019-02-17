@@ -2,3 +2,7 @@ install.packages(c("ggplot2", "dplyr", "magrittr", "readr", "shiny", "googleLang
 install.packages('tidyverse')
 install.packages('rvest')
 install.packages('splitstackshape')
+install.packages("GGally")
+install.packages("devtools")
+devtools::install_github("briatte/ggnet")
+install.packages("RecordLinkage")
