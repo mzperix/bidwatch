@@ -92,3 +92,4 @@ rating <- function(cName, data){
      return(score[locations])
       
  }
+rating("INTERNATIONAL ROAD DYNAMICS INC","data/all_contracts_prime_transactions_1.csv")

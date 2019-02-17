@@ -1,7 +1,12 @@
 $(document).ready(function(){
 
   $("input#mainSearch").width($(window).width()-50); 
-  //$("img#imgNetwork_1").hide();
+  $("div#divCoin").width((($(window).width()-150)/3));
+  $("div#divData1").width((($(window).width()-150)/3));
+  $("div#divData2").width((($(window).width()-150)/3));
+
+
+  /*$("img#imgNetwork_1").hide();
   $("img#imgHover_1").hide();
   
   $("input#mainSearch").focus(function(){
@@ -27,7 +32,10 @@ $("div#divImg1").mouseover(function(){
 $("div#divImg1").mouseout(function(){
   $("img#imgHover_1").hide();
 });
+*/
 
+
+ /*$("div#divData1").width((window.width()-150)/3));*/
 
 
 /* scrolling the window 
