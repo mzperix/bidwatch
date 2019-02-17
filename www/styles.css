@@ -34,8 +34,8 @@ body {
 }
  
  img#imgHover_1{
- 	 margin-top: 30px;
- 	 margin-bottom: 30px;
+ 	 margin-top: 130px;
+ 	 margin-bottom: 130px;
 }
  
  /* divs */
@@ -66,8 +66,8 @@ body {
   
   div#divImg1 {
     position: relative;
-    top: -80px;
-    left: 650px;
+    top: -150px;
+    left: 600px;
     height: 100px;
     width: 100px;
   }
