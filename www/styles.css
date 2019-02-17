@@ -79,10 +79,17 @@ body {
  	 margin-right: auto;
  	 width: 1400px;
  	 margin-bottom: 30px;
- 	 margin-top: -30px;
+ 	 margin-top: 0;
  	 text-align: center;
  	 color: rgba(0,84,104,0.4);
  	 border: rgba(0,84,104,0.4) solid 1px;
+}
+
+btn#btn_Search {
+     display: block;
+     margin-left: auto;
+ 	 margin-right: auto;
+ 	 color: #005468;
 }
  
 h1 {
