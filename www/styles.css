@@ -6,13 +6,39 @@ body {
   color: #666666;
  }
  
- img#imgBanner {
+ /* images */
+ 
+ img {
  	display: block;
  	margin-left: auto;
  	margin-right: auto;
+ }
+ 
+ img#imgBanner {
  	height: 300px;
  	width: 300px;
  }
+ 
+ img#imgQuote_2 {
+     margin-top: 40px;
+     margin-bottom: 40px;
+  }
+  
+ img#imgNetwork_1{
+     margin-top: 50px;
+}
+
+ img#imgLine{
+ 	 margin-top: 30px;
+ 	 margin-bottom: 30px;
+}
+ 
+ img#imgHover_1{
+ 	 margin-top: 30px;
+ 	 margin-bottom: 30px;
+}
+ 
+ /* divs */
  
  div#divBanner {
  background-color: #005468;
@@ -26,11 +52,38 @@ body {
  div#divMain {
  background-color: #ffffff;
  margin-top: 350px
+ height: 3500px;
+ position: relative;
+ top: 300px;
  }
  
- div#divMotivation {
- column-count: 2
- }
+ div#divDetail {
+  min-height: 500px;   
+  position: relative;
+  top: 300px;
+  
+  }
+  
+  div#divImg1 {
+    position: relative;
+    top: -80px;
+    left: 650px;
+    height: 100px;
+    width: 100px;
+  }
+    
+ /* inputs */
+ input#mainSearch {
+     display: block;
+     margin-left: auto;
+ 	 margin-right: auto;
+ 	 width: 1400px;
+ 	 margin-bottom: 30px;
+ 	 margin-top: -30px;
+ 	 text-align: center;
+ 	 color: rgba(0,84,104,0.4);
+ 	 border: rgba(0,84,104,0.4) solid 1px;
+}
  
 h1 {
   font-family: 'Avenir';
@@ -42,8 +95,12 @@ h1 {
  
 }
 
+h1#h1_Bids {
+margin-top: 40px;
+}
+
 p {
-margin: 20px;
+margin-bottom: 40px;
 }
 
 #plot1 {
