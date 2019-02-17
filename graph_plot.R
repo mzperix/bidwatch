@@ -56,7 +56,3 @@ graph_plot <- function(entities, articles){
   return(wat+extra+geom_text(aes(x=x, y=y-ysize/2, label=label)))
 }
 
-search_term <- "whitefish+energy+holdings"
-#search_result <- get_entities(search_term)
-
-p <- graph_plot(search_result[['entities']], search_result[['articles']])
