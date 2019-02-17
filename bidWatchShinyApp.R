@@ -5,6 +5,7 @@ source('first_plot.R')
 source('plot_2.R')
 source('info_card.R')
 source('get_entity_info.R')
+source('graph_plot.R')
 
 load('entities.RData')
 load('articles.RData')
