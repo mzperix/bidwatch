@@ -56,8 +56,20 @@ ui <- fluidPage(
 
 ),
 
-  tags$div(id = "divDetail")
-))
+tags$div(id = "divDetail",
+         tags$img(src="linebreak.png", id = "imgLine"),
+         tags$div(id = "divCoin",
+                  tags$p(id = "idCoinTitle", "COIN Score", class = "detailCorpTitle"),
+                  tags$p(id = "idCoinScore", "87", class = "detailCorpDetail")),
+         tags$div(id = "divData1",
+                  tags$p(id = "idData1Title", "Number of Contracts", class = "detailCorpTitle"),
+                  tags$p(id = "idData1", "22", class = "detailCorpDetail")),
+         tags$div(id = "divData2",
+                  tags$p(id = "idData2Title", "Overexpenditured", class = "detailCorpTitle"),
+                  tags$p(id = "idData2", "4", class = "detailCorpDetail")))
+  )
+
+)
 
 server <- function(input, output) {
   
