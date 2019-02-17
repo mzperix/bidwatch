@@ -38,6 +38,12 @@ body {
  	 margin-bottom: 130px;
 }
  
+ img#imgSmallIcon {
+     height: 10px;
+     width: 10px;
+     display: inline;
+     z-index: 100;
+  }
  /* divs */
  
  div#divBanner {
@@ -71,6 +77,14 @@ body {
     height: 100px;
     width: 100px;
   }
+  
+  div.entity{
+      font-size: 12px;
+      border: #007690;
+      background-color: #eeeeee;
+      padding: 10px;
+      margin-top: 30px;
+      }
     
  /* inputs */
  input#mainSearch {
@@ -85,13 +99,15 @@ body {
  	 border: rgba(0,84,104,0.4) solid 1px;
 }
 
-btn#searchBtn {
+#searchBtn {
      display: block;
      margin-left: auto;
  	 margin-right: auto;
+ 	 margin-top: -15px;
      border: rgba(0,84,104,0.4) solid 1px;
      background-color: #007690;
      color: white;
+     width: 150px;
 }
  
 h1 {
@@ -111,6 +127,13 @@ margin-top: 40px;
 p {
 margin-bottom: 40px;
 }
+
+div.entity p {
+    margin: 10px;
+}
+
+p.entityName { font-weight: bold; text-transform: uppercase; color:#005468;}
+p.entityTitle {  font-weight: bold; text-transform: uppercase}
 
 #plot1 {
   font-family: 'Avenir';
