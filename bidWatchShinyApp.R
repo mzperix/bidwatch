@@ -1,9 +1,13 @@
 library(shiny)
 library(r2d3)
+library(RJSONIO)
 source('first_plot.R')
 source('plot_2.R')
 source('info_card.R')
 source('get_entity_info.R')
+
+load('entities.RData')
+load('articles.RData')
 
 ui <- fluidPage(
   theme = "styles.css",
@@ -43,7 +47,7 @@ ui <- fluidPage(
   
   fluidRow(
     column(12, align="center",
-           textInput("searchEntry", "Search corrupt bids", value = "Pittsburgh", placeholder = NULL),
+           textInput("searchEntry", "Search corrupt bids", value = "", placeholder = NULL),
            actionButton("searchBtn", "Search"))
     ),
   
@@ -60,13 +64,16 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
+  observeEvent(input$searchBtn, {
+    #search_results <- get_entities(input$searchEntry)
+    output$plot2 <- renderPlot({
+      graph_plot(entities, articles)
+    }) 
+  })
+  
   output$plot1 <- renderPlot({
     plot1()
   })
-  
-  output$plot2 <- renderPlot({
-    plot2()
-  }) 
 
   output$info_card <- renderUI({
     #HTML("WHAT IS THIS")
