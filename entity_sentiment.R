@@ -57,16 +57,15 @@ score_entities <- function(entities){
     subset(type %in% c('PERSON', 'ORGANIZATION', 'LOCATION')) %>%
     #subset(score != 0.0) %>%
     subset(name == str_to_title(name)) %>%
-    subset(beginOffset < 3000) %>%
     subset(mention_type != "COMMON") %>%
-    subset(salience > 0.01) %>%
-    subset(magnitude != 0.0) %>%
+    #subset(magnitude != 0.0) %>%
     group_by(name, type) %>%
     summarise(mean_score = mean(score),
               mean_magnitude = mean(magnitude),
               mean_product = mean(score*magnitude),
               wikipedia_url = head(wikipedia_url,1),
-              max_saliency = max(salience))
+              max_saliency = max(salience)) %>%
+    subset(max_saliency > 0.002)
     #nest(-name) %>%
     #mutate(Quantiles = map(data, ~ quantile(.$score)),
     #       Quantiles = map(Quantiles, ~ bind_rows(.) %>% gather()))%>% 
@@ -75,6 +74,7 @@ score_entities <- function(entities){
 
 
 get_entities <- function(company){
+  company <- paste(gsub(" ","+", company),'scandal',sep='+')
   # Do Google search for company related news
   articles <- search_articles(company)
   
@@ -82,6 +82,7 @@ get_entities <- function(company){
   #nlp_result <- gl_nlp(articles)
   nlp_result <- map(articles, try(
     function(x) {
+      x<-str_replace_all(x, "[^[:alnum:]]", " ")
       #print(x)
       if ((length(x)>0) &&
          (nchar(x)>400)){
@@ -98,10 +99,25 @@ get_entities <- function(company){
   #entities <- rbind(list(nlp_result[['entities']]))
   #return(entities)
   # Summarise entity sentiments
-  return(entities)
+  return(list("entities"=entities,"articles"=articles))
   #return(entities)
 }
 
-dd <- get_entities("whitefish+energy+scandal+corruption")
-dd <- get_entities("icarus+scandal")
-scores <- score_entities(dd)
+check_connection <- function(name1, name2, text) {
+  l1 <- map(text, function(x){grepl(tail(unlist(strsplit(name1, ' ')),1), x)})
+  l2 <- map(text, function(x){grepl(tail(unlist(strsplit(name2, ' ')),1), x)})
+  result <- 0
+  for (i in 1:length(l1)){
+    if (l1[[i]] & l2[[i]]){
+      result <- result + 1
+    }
+  }
+  l1 <- map(tail(text,length(text)-1), function(x){grepl(tail(strsplit(name1, ' '),1), x)})
+  l2 <- map(head(text,length(text)-1), function(x){grepl(tail(strsplit(name2, ' '),1), x)})
+  for (i in 1:(length(l1)-1)){
+    if (l1[[i]] & l2[[i]]){
+      result <- result + 1
+    }
+  }
+  return(result)
+}

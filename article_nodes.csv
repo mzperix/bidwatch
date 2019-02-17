@@ -1,0 +1,19 @@
+﻿URL;node
+www.huffingtonpost.com;.headline__subtitle , span
+www.politico.com;.story-text > p
+www.washingtonpost.com;#article-body p
+www.cnbc.com;li , p
+www.theatlantic.com;p
+www.npr.org;#storytext li , #storybyline a , #storytext p
+www.thehill.com;p
+www.usatoday.com;.p-text
+cnn.com;p , .speakable
+forbes.com;p, strong
+fivethirtyeight.com;p
+newsrepublic.com;p
+dailyinterlake.com;.article-content p
+www.snopes.com;.post-card .card-body p
+www.nbcnews.com;.gray-100 > p
+www.vanityfair.com;.drop-cap p
+thinkprogress.org;.post__dek , p
+time.com;p
