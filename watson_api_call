@@ -1,0 +1,11 @@
+curl -X POST \
+-u "apikey:f4RNmGWMzB1q6tAbYCo4LNoj5DUZXP96xfY9pOPXW-Jd" \
+-H "Content-Type: application/json" \
+-d '{
+  "url": "https://www.invertalia.net/news/puerto-rico-defends-controversial-contract-with-electric-whitefish-after-hurricane-11574",
+  "features": {
+    "sentiment": {},
+    "relations": {}
+  }
+}' \
+"https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-19"
