@@ -6,6 +6,9 @@ library(RecordLinkage)
 library(png)
 source('entity_sentiment.R')
 
+xsize <- 0.05
+ysize <- 0.05
+
 graph_plot <- function(entities, articles){
   sentences <- unlist(strsplit(unlist(articles), "[.]", perl=T))
   scores <- score_entities(entities) %>%
@@ -15,9 +18,9 @@ graph_plot <- function(entities, articles){
     nrow()
   
   net_matrix <- matrix(0L, nrow = n_nodes, ncol=n_nodes)
-  id_central <- which.min(levenshteinSim(search_term, scores$name))
-  net_matrix[id_central,] <- 1L
-  net_matrix[,id_central] <- 1L
+  #id_central <- which.min(levenshteinSim(search_term, scores$name))
+  #net_matrix[id_central,] <- 1L
+  #net_matrix[,id_central] <- 1L
   for (i in 1:(n_nodes-1)){
     for (j in 1:i){
       net_matrix[i,j] <- check_connection(scores$name[i],scores$name[j],sentences)
@@ -44,8 +47,6 @@ graph_plot <- function(entities, articles){
   
   img_org <- readPNG("www/organization.png")
   img_person <- readPNG("www/person.png")
-  xsize <- 0.05
-  ysize <- 0.05
   extra <- apply(df, 1, function(row){
       x = as.numeric(row['x'])
       y = as.numeric(row['y'])

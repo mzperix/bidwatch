@@ -77,6 +77,7 @@ tags$div(id = "divDetail",
 
 server <- function(input, output) {
   plot_is_ready <- FALSE
+  search_term <- 'whitefish+energy'
   observeEvent(input$searchBtn, {
       data_ready <- FALSE
       plot_is_ready <- TRUE
